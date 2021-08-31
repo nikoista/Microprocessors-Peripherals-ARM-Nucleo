@@ -1,0 +1,216 @@
+
+
+
+ARM Macro Assembler    Page 1 
+
+
+    1 00000000                 GLOBAL           stringCheck
+    2 00000000                 AREA             |.PalindromicString| , CODE , R
+EADONLY
+    3 00000000                 EXPORT           stringCheck
+    4 00000000         stringCheck                          ;ROUTINE-FUNCTION P
+                                                            OU DEIXNEI AN TO ST
+                                                            RING/
+    5 00000000         ;/POU TOU PERASAME SAN ORISMA EINAI PALINDROMIKO H OXI
+    6 00000000 180E            ADDS             r6 , r1 , r0 ;       ;PERNAW TO
+                                                             ADRESS TOU R0 DHLA
+                                                            DH THN ARXH + TO ME
+                                                            GETHOS TOY STRING G
+                                                            IA NA PAW STO TELOS
+                                                            
+    7 00000002 1C49            ADDS             r1 , r1 , #1 ;       ;AUXANW TO
+                                                             MEGETHOS TOU STRIN
+                                                            G +1 GT TO PERASA S
+                                                            AN -1 STO ORISMA TH
+                                                            S SUNARTHSHS
+    8 00000004 F890 9000       LDRB             r9 , [r0]   ;       ;PERNAW THN
+                                                             TIMH POU EXEI MESA
+                                                             TO R0 ADRESS STO R
+                                                            9
+    9 00000008 F896 B000       LDRB             r11 , [r6]  ;       ;PERNAW THN
+                                                             TIMH POU EXEI MESA
+                                                             TO R6 ADRESS STO R
+                                                            11
+   10 0000000C F1B9 0F00       CMP              r9 , #'\0'  ;       ;ELENXW AN 
+                                                            EVALA SAN STRING TO
+                                                             '\0' APO THN ARXH
+   11 00000010 F1BB 0F00       CMP              r11 , #'\0' ;        ;ELENXW AN
+                                                             EVALA SAN STRING T
+                                                            O '\0' APO TO TELOS
+                                                            
+   12 00000014 D106            BNE              Loop        ;         ;AN OXI T
+                                                            OTE PHGAINE STO LOO
+                                                            P
+   13 00000016 1A00            SUBS             r0 , r0 , r0 ;       ;AN NAI TO
+                                                            TE MHDENISE TO ADRE
+                                                            SS TOU R0 
+   14 00000018 F100 0059       ADD              r0 , #'Y'   ;       ;PERASE MES
+                                                            A STO R0 THN TIMH '
+                                                            Y'
+   15 0000001C 1B24            SUBS             r4, r4 , r4 ;       ;VALE STO R
+                                                            4 THN TIMH 0 OMWS T
+                                                            O R4 EXEI KAI THN T
+                                                            IMH TOU LENGTH OPOT
+                                                            E TO KANW 0
+   16 0000001E F104 0401       ADD              r4 , #1     ;        ;VAZW THN 
+                                                            TIMH 1 STO R4 DIOTI
+                                                             NAI TO STRING EINA
+                                                            I PALINDROMIKO KAI 
+                                                            OLA PHGAN KALA
+   17 00000022 4770            BX               lr          ;          ;EPISTRE
+                                                            FW ME JUMP AND REGI
+                                                            STER STO PROGRAMMA 
+                                                            C ME ALLAGMENA TA R
+                                                            EGISTERS R0 KAI R1/
+                                                            
+
+
+
+ARM Macro Assembler    Page 2 
+
+
+   18 00000024         Loop                                 ;/TA R0 KAI R1 EINA
+                                                            I TA DUO REGISTERS 
+                                                            POU ANAKTW STO C PR
+                                                            OGRAMMA KAI EXOUN T
+                                                            A RETURNS APO THN R
+                                                            OUTINA 
+   19 00000024 F890 9000       LDRB             r9 , [r0]   ;       ;PERNAW THN
+                                                             TIMH POU EXEI MESA
+                                                             TO R0 ADRESS STO R
+                                                            9
+   20 00000028 F896 B000       LDRB             r11 , [r6]  ;       ;PERNAW THN
+                                                             TIMH POU EXEI MESA
+                                                             TO R0 ADRESS STO R
+                                                            11
+   21 0000002C 45D9            CMP              r9 , r11    ;        ;SUGRINW A
+                                                            N TA R9 KAI R11 POU
+                                                             EXOUN THN ARXH KAI
+                                                             TO TELOS TOU STRIN
+                                                            G AN EINAI IDIA
+   22 0000002E D004            BEQ              Palindromic ;       ;AN NAI PHG
+                                                            AINE STO SHMEIO Pal
+                                                            indromic
+   23 00000030 1A00            SUBS             r0 , r0 , r0 ;       ;AN OXI TO
+                                                            TE TOTE MHDENISE TO
+                                                             ADRESS TOU R0 
+   24 00000032 F100 004E       ADD              r0 , #'N'   ;       ;PERASE MES
+                                                            A STO R0 THN TIMH '
+                                                            N'
+   25 00000036 1B24            SUBS             r4 , r4 , r4 ;       ;VALE STO 
+                                                            R4 THN TIMH 0 OMWS 
+                                                            TO R4 EXEI KAI THN 
+                                                            TIMH TOU LENGTH OPO
+                                                            TE TO KANW 0
+   26 00000038 4770            BX               lr          ;          ;EPISTRE
+                                                            FW ME JUMP AND REGI
+                                                            STER STO PROGRAMMA 
+                                                            C OPWS PANW
+   27 0000003A         Palindromic                          ;EDW EINAI TO STRIN
+                                                            G PALINDROMIKO OPOT
+                                                            E KANW TIS APARAITI
+                                                            TES ALLAGES
+   28 0000003A F100 0001       ADD              r0 ,  #1    ;        ;AUXANO TO
+                                                             POU DEIXNEI O POIN
+                                                            TER R0 +1 THESH MNH
+                                                            MHS OPOTE 1 BYTE AF
+                                                            OU EXW STRING
+   29 0000003E F1A6 0601       SUB              r6 ,  #1    ;         ;AUXANO T
+                                                            O POU DEIXNEI O POI
+                                                            NTER R6 +1 THESH MN
+                                                            HMHS OPOTE 1 BYTE A
+                                                            FOU EXW STRING
+   30 00000042 F118 0801       ADDS             r8 , r8 , #1 ;       ;AUXANO TH
+                                                            N TIMH TOU REGISTER
+                                                             R8 GIA NA XERW POT
+                                                            E TELEIWNEI TO STRI
+                                                            NG
+   31 00000046 4588            CMP              r8 , r1     ;        ;ELENXW AN
+                                                             TO R8 EINAI IDIO M
+                                                            E TO R1 POU EXEI SA
+
+
+
+ARM Macro Assembler    Page 3 
+
+
+                                                            N TIMH TO MEGETHOS 
+                                                            TOU STRING
+   32 00000048 D1EC            BNE              Loop        ;         ;AN OXI S
+                                                            UNEXISE NA ELENXEIS
+                                                             TO STRING MEXRI NA
+                                                             FTASOUME STO TELOS
+                                                            
+   33 0000004A 1A00            SUBS             r0 , r0 , r0 ;       ;AN NAI TO
+                                                            TE TOTE MHDENISE TO
+                                                             ADRESS TOU R0 
+   34 0000004C F100 0059       ADD              r0 , #'Y'   ;       ;PERASE MES
+                                                            A STO R0 THN TIMH '
+                                                            Y'
+   35 00000050 1B24            SUBS             r4 , r4, r4 ;       ;VALE STO R
+                                                            4 THN TIMH 0 OMWS T
+                                                            O R4 EXEI KAI THN T
+                                                            IMH TOU LENGTH OPOT
+                                                            E TO KANW 0
+   36 00000052 F104 0401       ADD              r4 , #1     ;        ;VAZW THN 
+                                                            TIMH 1 STO R4 DIOTI
+                                                             NAI TO STRING EINA
+                                                            I PALINDROMIKO KAI 
+                                                            OLA PHGAN KALA
+   37 00000056 4770            BX               lr          ;          ;EPISTRE
+                                                            FW ME JUMP AND REGI
+                                                            STER STO PROGRAMMA 
+                                                            C OPWS PANW
+   38 00000058                 END                          ;EDW TELEIWNEI TO P
+                                                            ROGRAMMA ASSEMBLY
+Command Line: --debug --xref --diag_suppress=9931 --cpu=Cortex-M4.fp.sp --apcs=
+interwork --depend=.\objects\stringcheck.d -o.\objects\stringcheck.o -I.\RTE\Co
+mpiler -I.\RTE\_Target_1 -IC:\Users\Wero\AppData\Local\Arm\Packs\ARM\CMSIS\5.6.
+0\CMSIS\Core\Include -IC:\Users\Wero\AppData\Local\Arm\Packs\ARM\CMSIS\5.6.0\CM
+SIS\Driver\Include -IC:\Users\Wero\AppData\Local\Arm\Packs\Keil\ARM_Compiler\1.
+6.2\Include -IC:\Users\Wero\AppData\Local\Arm\Packs\Keil\STM32F4xx_DFP\2.14.0\D
+rivers\CMSIS\Device\ST\STM32F4xx\Include --predefine="__EVAL SETA 1" --predefin
+e="__UVISION_VERSION SETA 529" --predefine="_RTE_ SETA 1" --predefine="STM32F40
+1xE SETA 1" --list=.\listings\stringcheck.lst stringCheck.s
+
+
+
+ARM Macro Assembler    Page 1 Alphabetic symbol ordering
+Relocatable symbols
+
+.PalindromicString 00000000
+
+Symbol: .PalindromicString
+   Definitions
+      At line 2 in file stringCheck.s
+   Uses
+      None
+Comment: .PalindromicString unused
+Loop 00000024
+
+Symbol: Loop
+   Definitions
+      At line 18 in file stringCheck.s
+   Uses
+      At line 12 in file stringCheck.s
+      At line 32 in file stringCheck.s
+
+Palindromic 0000003A
+
+Symbol: Palindromic
+   Definitions
+      At line 27 in file stringCheck.s
+   Uses
+      At line 22 in file stringCheck.s
+Comment: Palindromic used once
+stringCheck 00000000
+
+Symbol: stringCheck
+   Definitions
+      At line 4 in file stringCheck.s
+   Uses
+      At line 1 in file stringCheck.s
+      At line 3 in file stringCheck.s
+
+4 symbols
+339 symbols in table
